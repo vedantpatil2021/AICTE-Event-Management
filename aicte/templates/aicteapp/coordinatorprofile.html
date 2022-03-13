@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="general.css" />
+    <link rel="stylesheet" href="generalform.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <title>General details</title>
+  </head>
+  <body>
+
+    <div class="wrap">
+        <div class="sidebar">
+            <div class="dashnavbar">
+                <i class="fa-solid fa-bars fa-2x hamburger" id="menuicon"></i>
+            </div>
+            <h1>Dashboard</h1>
+            <ul>
+                <li><a href="coordinatorevent">Events</a></li>
+                <li><a href="coordinatorprofile">Profile</a></li>
+                <li><a href="coordinatorbooking">Bookings</a></li>
+                <li><a href="coordinatorcanteen">Canteen</a></li>
+                <li><a href="coordinatorreport">Report</a></li>
+                <li><a href="logout">Logout</a></li>
+            </ul>
+        </div>
+        
+        <section class="main">
+          <nav style="width: 100%;height: 6vh;">
+              <h1 style="text-align: center;font-size: 2.5rem; color: #253138;">Logo</h1>
+          </nav>
+
+          <div class="main_intro_div">
+            <div class="intro_div">
+                {% if user.is_authenticated %}
+              <h1>Name:{{user.first_name}}</h1>
+              {% endif %}
+            </div>
+          </div>
+
+          <div class="intro_section">
+            <div class="intro_subsection">
+              <h1 style="text-align: center; font-size: 3rem;color: #253138;" >General Details</h1>
+
+              <!-- <div class="button">
+                <button><a>Update</a></button>
+                </div> -->
+
+              <!-- form section -->
+
+              <div class="container">
+                        <form  method="post">
+                            {% csrf_token %}
+                            <div class="user-details">
+                            <div class="input-box">
+                                <span class="details">Username</span>
+                                <input type="text"  value="{{user.username}}" name="username" readonly required>
+                            </div> 
+                            <div class="input-box">
+                                <span class="details">First Name:</span>
+                                <input type="text" placeholder="Enter your first name" name="firstname" value="{{user.first_name}}" readonly required>
+                            </div>
+                            <div class="input-box">
+                                <span class="details">Last Name:</span>
+                                <input type="text" placeholder="Enter your last name" name="lastname" value="{{user.last_name}}" readonly required>
+                            </div>
+                            <div class="input-box">
+                                <span class="details">Gender:</span>
+                                <input list="gender_drop" value="{{coordinatordata.gender}}" placeholder="Gender" name="gender" required/>
+                                <datalist id="gender_drop">
+                                <option value="Male">
+                                <option value="Female">
+                                <option value="Others">
+                                </datalist>
+                            </div> 
+                            <div class="input-box">
+                                <span class="details">Phone No:</span>
+                                <input type="number" placeholder="Enter your phone no" value="{{coordinatordata.phonenumber}}" name="phonenumber" maxlength="10" required>
+                            </div>
+                            <div class="input-box">
+                                <span class="details">Email:</span>
+                                <input type="text" placeholder="Enter your email" name="email" value="{{user.email}}"  readonly required>
+                            </div>
+                            <div class="input-box">
+                                <span class="details">Date of Birth:</span>
+                                <input type="date" placeholder="Enter your date of birth" value="{{coordinatordata.dob}}" name="dob" required>
+                            </div>
+                            <div class="input-box">
+                                <span class="details">Father's Name:</span>
+                                <input type="text" placeholder="Enter your father's name"  value="{{coordinatordata.fathername}}" name="fathername">
+                            </div>
+                            <div class="input-box">
+                                <span class="details">City:</span>
+                                <input type="text" placeholder="Enter your city" value="{{coordinatordata.city}}" name="city" required>
+                            </div>
+                            <div class="input-box">
+                                <span class="details">Address:</span>
+                                <input type="text" placeholder="Enter your address" name="address" value="{{coordinatordata.address}}"  required>
+                            </div>
+                            <div class="input-box">
+                                <span class="details">State:</span>
+                                <input type="text" placeholder="Enter state" name="state" value="{{coordinatordata.state}}" required>
+                            </div>
+                            <div class="input-box">
+                                <span class="details">District:</span>
+                                <input type="text" placeholder="Enter your district" value="{{coordinatordata.district}}" name="district" required>
+                            </div>
+                            <div class="input-box">
+                                <span class="details">Alternate Email:</span>
+                                <input type="text" placeholder="Enter your email" name="alternateemail" value="{{coordinatordata.alternameemail}}" required>
+                            </div>
+                            <div class="input-box">
+                                <span class="details">WhatsApp Number:</span>
+                                <input type="text" placeholder="Enter your whatsapp number" name="whatsappnumber" value="{{coordinatordata.whatsappnumber}}" required>
+                            </div>
+
+                            <div class="border"></div>
+
+                            <div class="title">Institute Details</div>
+
+                            <div class="user-details">
+                            <div class="input-box">
+                                <span class="details">Institute Name:</span>
+                                <input type="text" placeholder="Enter your name" value="{{coordinatordata.institutename}}" name="institutename" required>
+                            </div> 
+                        
+                            <div class="input-box">
+                                <span class="details">Institute Website Link:</span>
+                                <input type="url" placeholder="Enter your website link" value="{{coordinatordata.instituteweblink}}" name="instituteweblink" required>
+                            </div>
+                            
+                            <div class="input-box">
+                                <span class="details">Institute Address:</span>
+                                <input type="text" placeholder="Enter your address" value="{{coordinatordata.instituteaddress}}" name="instituteaddress" required>
+                            </div>
+                            <div class="input-box">
+                                <span class="details">Institute City:</span>
+                                <input type="text" placeholder="Enter your city" name="institutecity" value="{{coordinatordata.institutecity}}" required>
+                            </div>
+                            <div class="input-box">
+                                <span class="details">Institute State:</span>
+                                <input type="text" placeholder="Enter state" name="institutestate" value="{{coordinatordata.institutedstate}}" required>
+                            </div>
+                            <div class="input-box">
+                                <span class="details">Institute District:</span>
+                                <input type="text" placeholder="Enter your district" name="institutedistrict" value="{{coordinatordata.institutedistrict}}" required>
+                            </div>
+
+                            <div class="input-box">
+                                <span class="details">Institute Email:</span>
+                                <input type="email" placeholder="Enter your email" name="instituteemail" value="{{coordinatordata.instituteemail}}" required>
+                            </div>
+
+                            <div class="input-box">
+                                <span class="details">Institute Type:</span>
+                                <input type="text" placeholder="Enter type of Institute" name="instituetype" value="{{coordinatordata.institutetype}}" required>
+                            </div>
+                            <div class="input-box">
+                                <span class="details">Designation</span>
+                                <input type="text" placeholder="Enter your Designation" name="designation" value="{{coordinatordata.designation}}" required>
+                            </div>
+
+                            <div class="button">
+                                <input type="Submit" value="Save">
+                            </div>
+                        </form>
+             </div>
+              <!-- form done -->
+            </div>
+          </div>
+          
+      </section>
+    </div>
+
+    <script>
+      $(document).ready(function () {
+        $("#menuicon").click(function () {
+          $(".sidebar").toggleClass("opensidebar");
+        });
+      });
+    </script>
+  </body>
+  <style>
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+
+*{
+    margin: 0;
+    padding: 0;
+	font-family: 'Poppins', sans-serif;
+}
+
+body{
+    font-size: 100%;
+    font-family: sans-serif;
+}
+
+.wrap{
+   width: 100%;
+   float: left;
+}
+
+.main{
+    width: 100%;
+    height: 100vh;
+    background-color: transparent;
+    position: relative;
+}
+
+/*css sidebar start*/
+
+
+.sidebar{
+    height: 100vh;
+    width: 360px;
+    background-color: #15aae5;
+    position: fixed;
+    z-index: 999;
+    padding: 40px;
+    left: -360px;
+	display: block;
+    box-sizing: border-box;
+    transition: .6s;
+}
+
+.hamburger{
+	color: #253138;
+}
+
+.opensidebar{
+    left: 0;
+}
+
+.sidebar h1{
+    color: #fff;
+    font-size: 40px;
+    font-weight: normal;
+    text-transform: uppercase;
+}
+
+.sidebar ul{
+    display: block;
+    margin-top: 50px;
+}
+
+.sidebar ul li{
+    
+    padding: 10px 0;
+    list-style: none;
+    border-bottom: 1px solid #dadada;
+    margin-bottom: 10px;
+}
+
+.sidebar ul li a{
+    color: #fff;
+    font-size: 26px;
+    text-decoration: none;
+}
+
+#menuicon {
+    position: absolute;
+    right: -50px;
+    top: 14px;
+    cursor: pointer;
+}
+
+.intro_div{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 35vh;
+    width: 97%;
+    border-radius: 12px;
+    background: url('https://www.photos-public-domain.com/wp-content/uploads/2012/07/sky-blue-diagonal-striped-plastic-texture.jpg') center center / cover no-repeat;
+}
+
+.main_intro_div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40vh;
+}
+
+.intro_section{
+    width: 100%;
+    height: 190vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.intro_subsection{
+    width: 97%;
+    height: 190vh;
+    border-radius: 12px;
+    border: 1px solid #253138;margin-top: 1rem;
+}
+
+.border {
+    background-color: black;
+    height: 5px;
+    width: 94%;
+}
+
+</style>
+
+<style>
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    /* background: linear-gradient(135deg, #71b7e6, #9b59b6); */
+    /* padding: 10px; */
+}
+.container{
+    max-width: 700px;
+    width: 100%;
+    background: #fff;
+    padding: 25px 30px;
+    border-radius: 5px;
+    margin: auto;
+}
+.container .title{
+    font-size: 25px;
+    font-weight: 500;
+    position: relative;
+    margin: auto;
+    top: 1rem;
+}
+.container form .user-details{
+    display: flex;
+    flex-wrap: wrap;
+}
+form .user-details .input-box{
+    margin: 20px 0 12px 0;
+    width: calc(100% / 2 - 10px);
+    
+}
+.user-details .input-box .details{
+    
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+.user-details .input-box input{
+    height: 45px;
+    width: 95%;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding-left: 15px;
+    font-size: 16px;
+    border-bottom-width: 2px;
+    
+}
+.user-details .input-box input:focus,
+.user-details .input-box input:valid{
+    border-color: black;
+}
+form .button{
+    height: 30px;
+    margin: 45px 0;
+    width: 50px;
+    /* margin: auto; */
+}
+form .button input{
+    height: 100%;
+    width: 100%;
+    outline-color:none;
+    color: #fff;
+    border: none;
+    font-size: 10px;
+    font-weight: 500;
+    border-radius: 5px;
+    letter-spacing: 1px;
+    background: linear-gradient(135deg, #71b7e6, #9b59b6);
+}
+form .button input:hover{
+    background: linear-gradient(-135deg, #71b7e6, #9b59b6);
+}    
+
+</style>
+
+
+</html>

@@ -1,0 +1,209 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="Registeration.css" class="href">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" >
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <div class="title">Event Registration</div> 
+        <form method="post">
+            {% csrf_token %}
+            <div class="user-details">
+                <div class="input-box"> 
+                    {% if user.is_authenticated %}            
+                    <span class="details">Username</span>
+                    <input type="text" placeholder="Enter your Username" name="username" value="{{user.username}}" required>
+                    {% endif %}
+                </div>
+                <div class="input-box">                   
+                    <span class="details"> Event Name</span>
+                    <input type="text" placeholder="Enter your eventname" name="eventname" value="{{eventlist.eventname}}" required>
+                </div>
+                <div class="input-box">                   
+                    <span class="details">Event Id</span>
+                    <input type="text" placeholder="Enter your eventid" name="eventid" value="{{eventlist.id}}" required>
+                </div>
+                <div class="input-box">
+                    <span class="details">Phone No.</span>
+                    <input type="number" placeholder="Enter your Phone number" name="phoneno" required>
+                </div>
+                <div class="input-box conpass">
+                    <span class="details">Email</span>
+                    <input type="email" placeholder="Enter your email" name="email" required>
+                </div>
+                <div class="input-box conpass">
+                    <span class="details">Date of Birth</span>
+                    <input type="date" placeholder="Enter your date of birth" name="dob" required>
+                </div>
+                <div class="input-box conpass">
+                    <span class="details">City</span>
+                <input type="text" placeholder="Enter your city" name="city" required>
+                </div>
+                <div class="input-box conpass">
+                    <span class="details">Address</span>
+                    <input type="text" placeholder="Enter your address" name="address" required>
+                </div>
+                <div class="input-box conpass">
+                    <span class="details">State</span>
+                    <input type="text" placeholder="Enter your state" name="state" required>
+                </div>
+      
+            </div>    
+            <div class="furtherdetails">
+                <div class="input-box">
+                    <span class="details">Alternate Email</span>
+                <input type="email" placeholder="Enter your email" name="alternateemail" required>
+                </div>
+                <div class="input-box ">
+                    <span class="details">Whatsapp Number</span>
+                    <input type="text" placeholder="Enter your number" name="wahtsappnumber" required>
+                </div>
+    
+                
+            </div>
+ 
+            <div class="button">
+                <input type="submit" value="Register">
+            </div>
+        </form> 
+    </div>
+</body>
+<style>
+    @import url('');
+*{
+    margin: o;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+body{
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    background: #15aae5;
+}
+
+.container{
+    max-width: 700px;
+    width: 100%;
+    background: #fff;
+    padding: 25px 30px;
+    border-radius: 5px;
+}
+
+.container .title{
+    font-size: 25px;
+    text-align: center;
+    font-weight: 500;
+    position:relative;
+}
+
+.container form .user-details{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 20px 0 12px 0;
+}
+
+form .user-details .input-box{
+    margin-bottom: 15px;
+    width: calc(100% / 2- 20px);
+}
+
+.user-details .input-box .details{
+    display: block;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.user-details .input-box .input{
+    height: 45px;
+    width: 100%;
+    outline: none;
+    background: transparent;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding-left: 15px;
+    font-size: 16px;
+    border-bottom-width: 2px;
+    transition: all 0.3 ease;
+}
+
+.user-details .input-box input:focus,
+.user-details .input-box input:valid{
+    border-color:#9b59b6 ;
+}
+
+form .button input{
+    width: rem;
+    height: 45px;
+    margin: 45px 0;
+    outline: none;
+    color: #fff;
+    border: none;
+    font-size: 18px;
+    font-weight: 500;
+    border-radius: 15px 50px;
+    letter-spacing: 1px;
+    background: #15aae5;
+}
+
+form .button input:hover{
+    background: #15aae5;
+}
+
+.furtherdetails{
+    display: flex;
+    gap: 20px;
+}
+
+.conpass{
+    margin-top: 1.5rem;
+}
+
+@media only screen and (max-width:1000px) {
+    .furtherdetails{
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+select {
+    width: 100%;
+    padding: 16px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #f1f1f1;
+  }
+
+input {
+    width: 100%;
+    padding: 16px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #f1f1f1;
+    background: transparent;
+    box-shadow: 3px 2px rgba(121, 83, 210,.3 );
+}  
+
+
+.container form .user-details{
+    max-height: 300px;
+    overflow-y: scroll;
+}
+
+.user-details::-webkit-scrollbar{
+    width: 0%;
+}
+
+</style>
+</html>
+
+
+

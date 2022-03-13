@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <title>Event Booking Form</title>
+    <link rel="stylesheet" href="style.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+</head>
+<body>
+    <div class="container">
+        <div class="title">Event Booking</div>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <div class="user-details">
+            <div class="input-box">
+                <span class="details">Event Name:</span>
+                <input type="text" name="eventname" required>
+            </div>  
+            <div class="input-box">
+                {% if user.is_authenticated %}
+                <span class="details">User Name:</span>
+                <input type="text" name="username"  value="{{user.username}}" readonly required>
+                {% endif %}
+            </div> 
+            <div class="input-box">
+                {% if user.is_authenticated %}
+                <span class="details">User Id:</span>
+                <input type="text" name="userid"  value="{{user.id}}" readonly required>
+                {% endif %}
+            </div> 
+            <div class="input-box">
+                <span class="details">Event Description:</span>
+                <textarea name="eventdesc" cols="30" rows="10" required></textarea>
+            </div>
+            <div class="input-box">
+                <span class="details"> From Date:</span>
+                <input type="date" name="eventfromdate" required>
+            </div>
+            <div class="input-box">
+                <span class="details"> To Date:</span>
+                <input type="date" name="eventtodate" required>
+            </div>
+            <div class="input-box">
+                <span class="details">Form Time:</span>
+                <input type="time" name="eventfromtime" required>   
+            </div>
+            <div class="input-box">
+                <span class="details">To Time:</span>
+                <input type="time" name="eventtotime" required>
+            </div>
+            <div class="input-box">
+                <span class="details">Mode:</span>
+                <input type="text" name="eventmode" placeholder="(Offline or Online)" required>
+            </div>
+            <div class="input-box">
+                <span class="details">Event Host:</span>
+                <input type="text" name="eventhost" required>
+            </div>
+            <div class="input-box">
+                <span class="details">Venue:</span>
+                <input type="text" name="eventvenue" required>
+            </div>
+            <div class="input-box">
+                <span class="details">Number of Attendees:</span>
+                <input type="text" name="eventnoattendees" required>
+            </div>
+            <div class="input-box">
+                <span class="details">Contact Name:</span>
+                <input type="text" name="eventcontactname" required>
+            </div>
+            <div class="input-box">
+                <span class="details">Contact Email:</span>
+                <input type="text" name="eventcontactemail" required>
+            </div>
+            <div class="input-box">
+                <span class="details">Contact PhoneNo:</span>
+                <input type="text" name="eventcontactphoneno" required>
+            </div>
+            <div class="input-box">
+                <span class="details">Event Poster:</span>
+                <input type="file" name="eventposter" required>
+            </div>
+            <div class="input-box">
+                <span class="details">Event Advertisement Poster:</span>
+                <input type="file" name="eventadposter" required>
+            </div>
+            <div class="button">
+                <input type="Submit" value="Save">
+            </div>
+
+        </form>
+    </div>
+ 
+    
+</body>
+<style>
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+body{
+    display: flex;
+    height: 130vh;
+    justify-content: center;
+    align-items: center;
+    /* background: linear-gradient(135deg, #71b7e6, #9b59b6); */
+    background-color: #15aae5;
+    padding: 10px;
+}
+.container{
+    max-width: 700px;
+    width: 100%;
+    background: #fff;
+    padding: 25px 30px;
+    border-radius: 5px;
+}
+.container .title{
+    font-size: 25px;
+    font-weight: 500;
+    position: relative;
+}
+.container .title::before{
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 3px;
+    width: 30px;
+    background: linear-gradient(135deg, #71b7e6, #9b59b6);
+}
+.container form .user-details{
+    display: flex;
+    flex-wrap: wrap;
+}
+form .user-details .input-box{
+    margin: 20px 0 12px 0;
+    width: calc(100% / 2 - 10px);
+    
+}
+.user-details .input-box .details{
+    
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+.user-details .input-box input{
+    height: 45px;
+    width: 95%;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding-left: 15px;
+    font-size: 16px;
+    border-bottom-width: 2px;
+    
+}
+
+.user-details .input-box textarea{
+    height: 45px;
+    width: 95%;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding-left: 15px;
+    font-size: 16px;
+    border-bottom-width: 2px;
+    
+}
+.user-details .input-box input:focus,
+.user-details .input-box input:valid{
+    border-color: black;
+}
+form .button{
+    height: 30px;
+    margin: 45px 0;
+    width: 50px;
+    
+}
+form .button input{
+    height: 100%;
+    width: 100%;
+    outline-color:none;
+    color: #fff;
+    border: none;
+    font-size: 10px;
+    font-weight: 500;
+    border-radius: 5px;
+    letter-spacing: 1px;
+    /* background: linear-gradient(135deg, #71b7e6, #9b59b6); */
+    background-color: #15aae5;
+}
+form .button input:hover{
+    background: linear-gradient(-135deg, #71b7e6, #9b59b6);
+}    
+
+.checkbox{
+    width: 50px;
+}
+</style>
+</html>
